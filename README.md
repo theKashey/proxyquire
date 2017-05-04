@@ -1,13 +1,14 @@
-# proxyquire [![Build Status](https://secure.travis-ci.org/thlorenz/proxyquire.svg)](http://travis-ci.org/thlorenz/proxyquire)
+# proxyquire [![Build Status](https://secure.travis-ci.org/thekashey/proxyquire.svg)](http://travis-ci.org/thekashey/proxyquire)
 
-[![NPM](https://nodei.co/npm/proxyquire.png?downloads=true&stars=true)](https://nodei.co/npm/proxyquire/)
+[![NPM](https://nodei.co/npm/proxyquire-2.png?downloads=true&stars=true)](https://nodei.co/npm/proxyquire-2/)
 
 Proxies nodejs's require in order to make overriding dependencies during testing easy while staying **totally unobstrusive**.
 
-If you want to stub dependencies for your client side modules, try
-[proxyquireify](https://github.com/thlorenz/proxyquireify), a proxyquire for [browserify
-v2](https://github.com/substack/browserify) or [proxyquire-universal](https://github.com/bendrucker/proxyquire-universal) 
-to test in both Node and the browser.
+# This is fork of original proxyquire.
+- Cos live is not standing....
++ New function .noUnusedStubs(). Will throw error is any stub is unused by any reason. For example you did mistake in stub name.
++ New function .setNameResolver(resolverFunction). Now you can match stubs overs requires, not proxyquire.
+ resolverFunction(stubs, requestedFileName, sourceModuleFileName) and returns object with used `key` and `stub`.
 
 # Features
 

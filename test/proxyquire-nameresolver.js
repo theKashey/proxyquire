@@ -25,7 +25,7 @@ var stubs = {
 };
 
 
-function resolver(stubs, fileName, module) {
+function keyResolver(stubs, fileName, module) {
   var dirname = module ? path.dirname(module) : '';
   var requireName = fileName;
   if (dirname) {
@@ -34,9 +34,17 @@ function resolver(stubs, fileName, module) {
 
   for (var i in stubs) {
     if (requireName.indexOf(i) > 0) {
-      return stubs[i];
+      return {
+        key: i,
+        stub: stubs[i]
+      };
     }
   }
+}
+
+function resolver(stubs, fileName, module) {
+  var result = keyResolver(stubs, fileName, module);
+  return result ? result.stub : undefined;
 }
 
 function cloneObject(object) {
@@ -105,7 +113,7 @@ describe('nameresolver', function () {
 
     it('proxyquire can load module buy half name', function () {
       require('./samples/foo');
-      var proxiedFoo = proxyquire.resolveNames(resolver).load('./samples/foo', stubs);
+      var proxiedFoo = proxyquire.resolveNames(keyResolver).load('./samples/foo', stubs);
 
       assert.equal(proxiedFoo.testSub(), 'sub');
       assert.equal(proxiedFoo.bigRab(), 'RESOLVED');
@@ -115,7 +123,7 @@ describe('nameresolver', function () {
       var foo = require('./samples/foo');
       assert.equal(foo.testSub(), 'sub');
       wipe();
-      var proxiedFoo = proxyquire.resolveNames(resolver).load('./samples/foo', {
+      var proxiedFoo = proxyquire.resolveNames(keyResolver).load('./samples/foo', {
         '/sub.js': {
           subFn: function () {
             return 'override';
@@ -130,7 +138,7 @@ describe('nameresolver', function () {
 
     it('proxyquire can override deep module via overriden module', function () {
       wipe();
-      var proxiedFoo = proxyquire.resolveNames(resolver).callThru().load('./samples/foo', {
+      var proxiedFoo = proxyquire.resolveNames(keyResolver).callThru().load('./samples/foo', {
         'samples/bar': {
           rab: function () {
             return 'resolved'
