@@ -144,7 +144,7 @@ describe('nameresolver', function () {
             return 'resolved'
           }
         },
-        '/sub.js': {
+        '/sub.js': { // sub.js included in bar.js, included in foo.js. Ie required by third-party module
           subFn: function () {
             return 'override';
           },

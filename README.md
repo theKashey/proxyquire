@@ -2,7 +2,7 @@
 
 [![NPM](https://nodei.co/npm/proxyquire-2.png?downloads=true&stars=true)](https://nodei.co/npm/proxyquire-2/)
 
-Proxies nodejs's require in order to make overriding dependencies during testing easy while staying **totally unobstrusive**.
+Proxies nodejs's require in order to make overriding dependencies during testing easy while staying **totally unobtrusive**.
 
 # This is fork of original proxyquire.
 - Cos live is not standing....
