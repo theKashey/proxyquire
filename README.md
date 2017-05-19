@@ -8,7 +8,13 @@ Proxies nodejs's require in order to make overriding dependencies during testing
 - Cos live is not standing....
 + New function .noUnusedStubs(). Will throw error is any stub is unused by any reason. For example you did mistake in stub name.
 + New function .setNameResolver(resolverFunction). Now you can match stubs overs requires, not proxyquire.
- resolverFunction(stubs, requestedFileName, sourceModuleFileName) and returns object with used `key` and `stub`.
++ New function .onlyForProjectFiles(). Now proxyquire will not wipe node_modules.
++ Documentation on IDE level, not readme. 
+
+ (PS:resolverFunction(stubs, requestedFileName, sourceModuleFileName) and returns object with used `key` and `stub`)
+
+Most usable form of this `better` proxyquire is [proxyquire-webpack-alias](https://github.com/theKashey/proxyquire-webpack-alias). 
+It is impossible to achieve same with original one.
 
 # Features
 

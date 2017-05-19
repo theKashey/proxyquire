@@ -67,7 +67,7 @@ interface Proxyquire {
      *
      * @example proxyquire.resolveNames((stubs, fileName) => stubs.hasOwnProperty(fileName) ? stubs[fileName] : null)
      */
-    resolveNames(resolver: Function): Proxyquire;
+    resolveNames(resolver: (stubs: any, path: string, module: any) => any): Proxyquire;
 
     /**
      * Throws an error is some stubs are unused
