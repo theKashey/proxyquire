@@ -5,15 +5,30 @@
 var assert = require('assert')
   , proxyquire = require('..')
   , path = require('path')
-  , fooPath = path.join(__dirname, './samples/notexisting/foo.js')
+  , fooPath = path.join(__dirname, './samples/foo-singleton.js');
 
 describe('When resolving something unused', function () {
+
+  it('should work in default behavior', function () {
+    proxyquire.load(fooPath, {
+      '/not/used.js': { a: 'b' },
+      'path': { a: 'b' }
+    })
+  });
 
   it('throws error if stubs is not used', function () {
     assert.throws(function () {
       proxyquire.noUnusedStubs().load(fooPath, {
-        '/not/existing/bar.json': { config: 'bar\'s config', '@noCallThru': true },
-        '/not/used/thing': { a: 'b' }
+        '/not/used.js': { a: 'b' },
+        'path': { a: 'b' }
+      })
+    });
+  });
+
+  it('throws error if stubs is not used', function () {
+    assert.throws(function () {
+      proxyquire.noUnmockedStubs().load(fooPath, {
+        //'path': { a: 'b' }
       })
     });
   })
