@@ -113,7 +113,7 @@ interface Proxyquire {
     forAllFiles(): Proxyquire;
 }
 
-declare module 'proxyquire' {
+declare module 'proxyquire-2' {
     var p: Proxyquire;
-    export = p;
+    export default p;
 }

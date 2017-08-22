@@ -1,6 +1,6 @@
 {
   "name": "proxyquire-2",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "Proxies import/require in order to allow overriding dependencies during testing.",
   "main": "index.js",
   "types": "proxyquire.d.ts",
